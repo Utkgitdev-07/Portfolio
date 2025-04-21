@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utkarsh Yadav | Data Scientist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS */
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e5e7eb;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 1s ease-in-out;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active::after {
+            width: 100%;
+        }
+        
+        .section {
+            scroll-margin-top: 80px;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-indigo-600">Portfolio</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-indigo-600 transition">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-indigo-600 transition">About</a>
+                    <a href="#resume" class="nav-link text-gray-700 hover:text-indigo-600 transition">Resume</a>
+                    <a href="#skills" class="nav-link text-gray-700 hover:text-indigo-600 transition">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-indigo-600 transition">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white pb-3 px-4">
+            <div class="flex flex-col space-y-2">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-indigo-600 transition">Home</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-indigo-600 transition">About</a>
+                <a href="#resume" class="block py-2 text-gray-700 hover:text-indigo-600 transition">Resume</a>
+                <a href="#skills" class="block py-2 text-gray-700 hover:text-indigo-600 transition">Skills</a>
+                <a href="#projects" class="block py-2 text-gray-700 hover:text-indigo-600 transition">Projects</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-indigo-600 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="section min-h-screen flex items-center pt-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Hello, I'm <span class="text-indigo-600">Utkarsh Yadav</span></h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-lg">
+                        Welcome to my portfolio — a space where code meets curiosity, and data transforms into intelligence. 
+                        I'm a passionate Data Scientist who blends deep mathematical insight with engineering execution 
+                        to build scalable, real-world AI solutions.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#projects" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition">View My Work</a>
+                        <a href="#contact" class="border border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition">Contact Me</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80">
+                        <div class="absolute inset-0 bg-indigo-100 rounded-full opacity-20"></div>
+                        <div class="absolute inset-4 bg-indigo-200 rounded-full opacity-30"></div>
+                        <div class="absolute inset-8 bg-indigo-300 rounded-full opacity-40"></div>
+                        <img src="images\WhatsApp Image 2025-04-16 at 11.06.46.jpeg" 
+                             alt="Data Science Illustration" 
+                             class="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg floating">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-10 md:mb-0 flex justify-center">
+                    <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-indigo-100 shadow-lg">
+                        <img src="images\WhatsApp Image 2025-04-16 at 11.06.46.jpeg" 
+                             alt="Utkarsh Yadav" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <p class="text-lg text-gray-600 mb-6">
+                        Hey, I'm Utkarsh Yadav — a data science enthusiast with a sharp eye for mathematics and a passion for building real-world AI solutions. 
+                        From machine learning to deep learning and NLP, I love transforming ideas into intelligent, scalable systems using tools like Python, AWS, Flask, and Docker.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Alongside my academic journey at JUET Guna, I'm also exploring the world of freelancing, eager to collaborate on data-driven projects and help others bring their vision to life. 
+                        Whether it's crafting ML models or deploying end-to-end solutions — I'm here to make data work smart.
+                    </p>
+                    <p class="text-lg text-gray-600 font-medium">
+                        Let's build something impactful!
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <div class="bg-indigo-50 px-4 py-2 rounded-full flex items-center">
+                            <i class="fas fa-laptop-code text-indigo-600 mr-2"></i>
+                            <span class="text-gray-700">Data Scientist</span>
+                        </div>
+                        <div class="bg-indigo-50 px-4 py-2 rounded-full flex items-center">
+                            <i class="fas fa-brain text-indigo-600 mr-2"></i>
+                            <span class="text-gray-700">AI Engineer</span>
+                        </div>
+                        <div class="bg-indigo-50 px-4 py-2 rounded-full flex items-center">
+                            <i class="fas fa-chart-line text-indigo-600 mr-2"></i>
+                            <span class="text-gray-700">ML Researcher</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">My Resume</h2>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-12">
+                <div class="p-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-semibold text-gray-800">Education</h3>
+                        <a href="resume.pdf" download class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                            <i class="fas fa-download mr-2"></i> Download CV
+                        </a>                        
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <!-- Education Timeline -->
+                        <div class="relative pl-8 border-l-2 border-indigo-200 pb-8">
+                            <div class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-indigo-600"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between">
+                                <h4 class="text-xl font-medium text-gray-800">Bachelor of Technology</h4>
+                                <span class="text-indigo-600 font-medium">2022 - Present</span>
+                            </div>
+                            <p class="text-gray-600 mt-1">JUET Guna</p>
+                            <p class="text-gray-500 mt-2">Pursuing my degree in Computer Science with a focus on Artificial Intelligence and Machine Learning.</p>
+                        </div>
+                        
+                        <div class="relative pl-8 border-l-2 border-indigo-200 pb-8">
+                            <div class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-indigo-600"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between">
+                                <h4 class="text-xl font-medium text-gray-800">Higher Secondary Education</h4>
+                                <span class="text-indigo-600 font-medium">2020 - 2021</span>
+                            </div>
+                            <p class="text-gray-600 mt-1">CBSE Board</p>
+                            <p class="text-gray-500 mt-2">Completed 12th grade with specialization in Science and Mathematics.</p>
+                        </div>
+                        
+                        <div class="relative pl-8 border-l-2 border-indigo-200">
+                            <div class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-indigo-600"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between">
+                                <h4 class="text-xl font-medium text-gray-800">High School Education</h4>
+                                <span class="text-indigo-600 font-medium">2018 - 2019</span>
+                            </div>
+                            <p class="text-gray-600 mt-1">CBSE Board</p>
+                            <p class="text-gray-500 mt-2">Completed 10th grade with excellent academic performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">My Skills</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Left Column -->
+                <div>
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700 font-medium">Machine Learning (ML)</span>
+                            <span class="text-indigo-600 font-medium">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700 font-medium">Deep Learning (DL)</span>
+                            <span class="text-indigo-600 font-medium">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700 font-medium">Natural Language Processing (NLP)</span>
+                            <span class="text-indigo-600 font-medium">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700 font-medium">Python Programming</span>
+                            <span class="text-indigo-600 font-medium">92%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div>
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700 font-medium">Mathematical Intuition & Statistics</span>
+                            <span class="text-indigo-600 font-medium">88%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700 font-medium">Model Deployment (Flask, AWS, Docker)</span>
+                            <span class="text-indigo-600 font-medium">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700 font-medium">Data Preprocessing & Feature Engineering</span>
+                            <span class="text-indigo-600 font-medium">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700 font-medium">Version Control & CI/CD (GitHub Actions, Git)</span>
+                            <span class="text-indigo-600 font-medium">78%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 78%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+<section id="projects" class="section py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">My Projects</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <a href="https://github.com/Utkgitdev-07/Object-Tracking-Using-DeepSORT-and-YOLOv5" target="_blank"
+                class="block transform transition duration-300 hover:scale-205 group">
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden group-hover:shadow-2xl">
+                    <div class="h-48 bg-indigo-100 flex items-center justify-center">
+                        <i class="fas fa-object-group text-6xl text-indigo-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-indigo-100 text-indigo-600 p-2 rounded-full mr-3">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800">Object Tracking using DeepSORT and YOLOv5</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            An intelligent multi-object tracking system combining YOLOv5 for object detection with DeepSORT for real-time tracking across video frames.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">PyTorch</span>
+                            <span class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">OpenCV</span>
+                            <span class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">YOLOv5</span>
+                            <span class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">DeepSORT</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project 2 -->
+            <a href="https://github.com/Utkgitdev-07/Sign-Language-Detection" target="_blank"
+                class="block transform transition duration-300 hover:scale-205 group">
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden group-hover:shadow-2xl">
+                    <div class="h-48 bg-indigo-100 flex items-center justify-center">
+                        <i class="fas fa-hands text-6xl text-indigo-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-indigo-100 text-indigo-600 p-2 rounded-full mr-3">
+                                <i class="fas fa-sign-language"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800">Sign Language Detection</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            A deep learning-powered model that detects and interprets hand gestures in real time using computer vision, enabling translation of sign language into text.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">OpenCV</span>
+                            <span class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">TensorFlow</span>
+                            <span class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">Flask</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project 3 -->
+            <a href="https://github.com/Utkgitdev-07/Speech-Emotion-Recognition" target="_blank"
+                class="block transform transition duration-300 hover:scale-205 group">
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden group-hover:shadow-2xl">
+                    <div class="h-48 bg-indigo-100 flex items-center justify-center">
+                        <i class="fas fa-comment-dots text-6xl text-indigo-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-indigo-100 text-indigo-600 p-2 rounded-full mr-3">
+                                <i class="fas fa-microphone-alt"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800">Speech Emotion Recognition</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Built a model that classifies human emotions based on speech patterns using MFCC features and deep learning. Enables emotion-aware systems.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">Librosa</span>
+                            <span class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">TensorFlow</span>
+                            <span class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">Flask</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="section py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Get In Touch</h2>
+            
+            <div class="flex flex-col md:flex-row gap-12">
+                <!-- Contact Info -->
+                <div class="md:w-1/2">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 text-indigo-600 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-gray-700 font-medium">Email</h4>
+                                <a href="mailto:utkarsh@example.com" class="text-indigo-600 hover:text-indigo-800">utkarsh@example.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 text-indigo-600 p-3 rounded-full mr-4">
+                                <i class="fab fa-linkedin-in"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-gray-700 font-medium">LinkedIn</h4>
+                                <a href="https://linkedin.com/in/utkarsh-yadav" target="_blank" class="text-indigo-600 hover:text-indigo-800">linkedin.com/in/utkarsh-yadav</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 text-indigo-600 p-3 rounded-full mr-4">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-gray-700 font-medium">GitHub</h4>
+                                <a href="https://github.com/utkarsh-yadav" target="_blank" class="text-indigo-600 hover:text-indigo-800">github.com/utkarsh-yadav</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 text-indigo-600 p-3 rounded-full mr-4">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-gray-700 font-medium">Twitter (X)</h4>
+                                <a href="https://twitter.com/utkarsh_yadav" target="_blank" class="text-indigo-600 hover:text-indigo-800">@utkarsh_yadav</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 text-indigo-600 p-3 rounded-full mr-4">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-gray-700 font-medium">Instagram</h4>
+                                <a href="https://instagram.com/utkarsh.yadav" target="_blank" class="text-indigo-600 hover:text-indigo-800">@utkarsh.yadav</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="md:w-1/2">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-6">Let's Work Together</h3>
+                    
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Your Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold">Utkarsh Yadav</h3>
+                    <p class="text-gray-400 mt-2">Data Scientist & AI Engineer</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Utkarsh Yadav. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active state in navigation
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Animate progress bars when scrolled into view
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            
+            progressBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                const isVisible = (rect.top <= window.innerHeight * 0.8);
+                
+                if (isVisible) {
+                    const width = bar.parentElement.nextElementSibling.textContent;
+                    bar.style.width = width;
+                }
+            });
+        }
+        
+        // Run on initial load and scroll
+        window.addEventListener('load', animateProgressBars);
+        window.addEventListener('scroll', animateProgressBars);
+        
+        // Set active navigation link based on scroll position
+        function setActiveNavLink() {
+            const sections = document.querySelectorAll('.section');
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', setActiveNavLink);
+        window.addEventListener('load', setActiveNavLink);
+    </script>
+</body>
+</html>
