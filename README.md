@@ -5,11 +5,8 @@ This is my personal portfolio website built with HTML, CSS, and JavaScript (or y
 ## 🌐 Live Portfolio
 
 You can view the live version of my portfolio here:  
-👉 [https://<Utkgitdev-07>.github.io/<Portfolio>/](https://<Utkgitdev-07>.github.io/<Portfolio>/)
+👉 [https://<Utkgitdev-07>.github.io/<Portfolio>/](https://utkgitdev-07.github.io/Portfolio//)
 
-> Replace `<your-username>` and `<repository-name>` with your actual GitHub username and repository name.
-
----
 
 ## ⚙️ Deployment
 
@@ -21,7 +18,4 @@ This project is automatically deployed using **GitHub Actions** and **GitHub Pag
 2. GitHub Actions builds the portfolio
 3. Output is deployed to the `gh-pages` branch using `peaceiris/actions-gh-pages`
 
----
-
-## 📁 Project Structure
 
