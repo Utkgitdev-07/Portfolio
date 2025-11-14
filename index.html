@@ -7,30 +7,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Custom CSS */
-        .progress-bar {
-            height: 8px;
-            border-radius: 4px;
-            background-color: #e5e7eb;
-            overflow: hidden;
+        :root {
+            --primary: #818cf8;
+            --secondary: #38bdf8;
+            --accent: #f472b6;
         }
-        
-        .progress-fill {
-            height: 100%;
-            border-radius: 4px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            transition: width 1s ease-in-out;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
         .nav-link {
             position: relative;
         }
-        
         .nav-link::after {
             content: '';
             position: absolute;
@@ -38,84 +22,85 @@
             height: 2px;
             bottom: -2px;
             left: 0;
-            background-color: #3b82f6;
+            background-color: var(--primary);
             transition: width 0.3s ease;
         }
-        
-        .nav-link:hover::after {
+        .nav-link:hover::after,
+        .nav-link.active::after {
             width: 100%;
         }
-        
-        .active::after {
-            width: 100%;
-        }
-        
         .section {
             scroll-margin-top: 80px;
         }
-        
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
-        
         .floating {
-            animation: float 2s ease-in-out infinite;
+            animation: float 2.5s ease-in-out infinite;
         }
-    </style>
-
-<style>
-/* Project hover effect: focused card enlarges, others shrink */
-@media (min-width: 768px) {
-    .project-card:hover {
-        transform: scale(1.05);
-        z-index: 2;
-    }
-    .project-card:hover ~ .project-card {
-        transform: scale(0.95);
-        opacity: 0.8;
-    }
-    .project-card {
-        transition: all 0.3s ease-in-out;
-        height: 100%;
-    }
-}
-</style>
-<style>
-    @keyframes float {
-      0% { transform: translateY(0); }
-      70% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
-    
-    .floating {
-      animation: float 2.5s ease-in-out infinite;
-    }
-    
-    @keyframes slideIn {
-      0% { opacity: 0; transform: translateX(100px); }
-      100% { opacity: 1; transform: translateX(0); }
-    }
-    
-    .slide-in {
-      animation: slideIn 1.5s ease-out both;
-    }
-    
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-    
-    .animate-typing span::after {
-      content: "|";
-      animation: blink 1s infinite;
-    }
-    
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        .slide-in {
+            animation: slideIn 1.5s ease-out both;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .skills-marquee {
+            overflow: hidden;
+            position: relative;
+        }
+        .skills-marquee span {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.4rem 1rem;
+            margin-right: 1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(17, 24, 39, 0.7);
+            box-shadow: 0 0 20px rgba(129, 140, 248, 0.2);
+        }
+        .skills-track {
+            display: flex;
+            width: max-content;
+            animation: ticker 18s linear infinite;
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.9), rgba(30, 41, 59, 0.7));
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        .pill {
+            padding: 0.55rem 1.25rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            background: rgba(79, 70, 229, 0.15);
+            border: 1px solid rgba(129, 140, 248, 0.5);
+            color: #e0e7ff;
+        }
+        .halo {
+            position: absolute;
+            inset: -40%;
+            background: radial-gradient(circle, rgba(129, 140, 248, 0.3), transparent 70%);
+            filter: blur(40px);
+            opacity: 0.5;
+            animation: float 6s ease-in-out infinite;
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 24px;
+        }
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.5);
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -149,6 +134,11 @@
           }
         
           typeLoop();
+          
+          const skillsTrack = document.getElementById("skillsTrack");
+          if (skillsTrack) {
+            skillsTrack.innerHTML += skillsTrack.innerHTML;
+          }
         });
         </script>
         
@@ -161,7 +151,7 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <span class="text-xl font-bold text-indigo-400">Portfolio</span>
+                    <span class="text-xl font-bold text-indigo-400 tracking-wider">UTKARSH.</span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="nav-link text-white hover:text-indigo-400 transition">Home</a>
@@ -196,7 +186,8 @@
     <!-- Hero Section -->
 <section id="home" class="section min-h-screen flex items-center pt-16" style="background: radial-gradient(circle at 30% 30%, #3b82f6 0%, #111827 40%, #000000 100%);">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-16">
+      <div class="relative flex flex-col md:flex-row items-center justify-between gap-16">
+        <span class="halo"></span>
         
         <!-- Left Content -->
         <div class="md:w-1/2 mb-10 md:mb-0 animate-typing">
@@ -206,11 +197,28 @@
                 <span id="typingName" class="text-indigo-400 whitespace-nowrap"></span>
               </h1>
               
-          <p class="text-lg text-gray-400 mb-8 max-w-lg">
-            Welcome to my portfolio — a space where code meets curiosity, and data transforms into intelligence. 
-            I'm a passionate Data Scientist who blends deep mathematical insight with engineering execution 
-            to build scalable, real-world AI solutions.
+          <p class="text-lg text-gray-300 mb-8 max-w-2xl leading-relaxed">
+            I design reasoning-driven AI systems that blend mathematical rigor with product-ready engineering.
+            From autonomous GenAI agents to scalable ML systems on the cloud, I build intelligence that ships.
           </p>
+          <div class="skills-marquee mb-8">
+            <div class="skills-track" id="skillsTrack">
+              <span>Data Scientist</span>
+              <span>GenAI Solutions</span>
+              <span>Agentic AI Architectures</span>
+              <span>RAG Pipelines</span>
+              <span>LangChain</span>
+              <span>LangGraph</span>
+              <span>LLMs</span>
+              <span>MLOps</span>
+              <span>Vector Databases</span>
+              <span>Flask</span>
+              <span>Pinecone</span>
+              <span>Vector Embeddings</span>
+              <span>MongoDB</span>
+              <span>AI Agents</span>
+            </div>
+          </div>
           <div class="flex space-x-4">
             <a href="#projects" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition">View My Work</a>
             <a href="#contact" class="border border-indigo-600 text-indigo-400 hover:bg-indigo-800 px-6 py-3 rounded-lg font-medium transition">Contact Me</a>
@@ -245,35 +253,40 @@
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/3 mb-10 md:mb-0 flex justify-center">
                     <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-indigo-100 shadow-lg">
-                        <img src="images\WhatsApp Image 2025-04-16 at 11.06.46.jpeg" 
+                        <img src="images/WhatsApp Image 2025-04-16 at 11.06.46.jpeg" 
                              alt="Utkarsh Yadav" 
                              class="w-full h-full object-cover">
                     </div>
                 </div>
                 <div class="md:w-2/3 md:pl-12">
-                    <p class="text-lg text-gray-400 mb-6">
-                        Hey, I'm Utkarsh Yadav — a data science enthusiast with a sharp eye for mathematics and a passion for building real-world AI solutions. 
-                        From machine learning to deep learning and NLP, I love transforming ideas into intelligent, scalable systems using tools like Python, AWS, Flask, and Docker.
+                    <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                        Hey, I'm Utkarsh Yadav — a data science and AI enthusiast with a sharp eye for mathematics and a passion for building real-world intelligent systems. I love working across Machine Learning, Deep Learning, NLP, Generative AI, and Agentic AI, transforming ideas into autonomous, scalable AI solutions.
                     </p>
-                    <p class="text-lg text-gray-400 mb-6">
-                        Alongside my COMPUTER SCIENCE ENGINEERING journey at JUET Guna, I'm also exploring the world of freelancing, eager to collaborate on data-driven projects and help others bring their vision to life. 
-                        Whether it's crafting ML models or deploying end-to-end solutions — I'm here to make data work smart.
+                    <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                        I enjoy building modern AI applications using LLMs, RAG pipelines, LangChain, LangGraph, vector databases, and cloud-native MLOps tools like AWS, Docker, Flask, and GitHub Actions. Whether it’s crafting reasoning-driven AI agents or deploying full end-to-end solutions, I focus on making AI both smart and production-ready.
                     </p>
-                    <p class="text-lg text-gray-400 font-medium">
-                        Let's build something impactful!
+                    <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                        Alongside my Computer Science Engineering journey at JUET Guna, I’m also exploring freelancing opportunities — excited to collaborate on GenAI projects, ML pipelines, LLM-based applications, and innovative data-driven ideas.
                     </p>
-                    <div class="mt-8 flex flex-wrap gap-4">
-                        <div class="bg-gray-800 px-4 py-2 rounded-full flex items-center">
+                    <p class="text-lg text-gray-300 font-medium">
+                        Whether you need intelligent automation, scalable ML systems, or cutting-edge GenAI integrations — I’m here to help bring your vision to life. Let’s build something impactful! 🚀
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <div class="bg-gray-900/70 px-4 py-2 rounded-full flex items-center border border-gray-700">
                             <i class="fas fa-laptop-code text-indigo-400 mr-2"></i>
                             <span class="text-white">Data Scientist</span>
                         </div>
-                        <div class="bg-gray-800 px-4 py-2 rounded-full flex items-center">
+                        <div class="bg-gray-900/70 px-4 py-2 rounded-full flex items-center border border-gray-700">
                             <i class="fas fa-brain text-indigo-400 mr-2"></i>
                             <span class="text-white">AI Engineer</span>
                         </div>
-                        <div class="bg-gray-800 px-4 py-2 rounded-full flex items-center">
+                        <div class="bg-gray-900/70 px-4 py-2 rounded-full flex items-center border border-gray-700">
                             <i class="fas fa-chart-line text-indigo-400 mr-2"></i>
                             <span class="text-white">ML Researcher</span>
+                        </div>
+                        <div class="bg-gray-900/70 px-4 py-2 rounded-full flex items-center border border-gray-700">
+                            <i class="fas fa-network-wired text-indigo-400 mr-2"></i>
+                            <span class="text-white">Agentic AI Architect</span>
                         </div>
                     </div>
                 </div>
@@ -335,8 +348,12 @@
     <!-- Skills Section -->
 <section id="skills" class="section py-20 bg-gray-800">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center text-white mb-12">My Skills</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div class="text-center mb-12">
+        <p class="uppercase tracking-[0.3em] text-indigo-400 text-xs mb-3">stack in motion</p>
+        <h2 class="text-3xl font-bold text-white">My Skills</h2>
+        <p class="text-gray-400 mt-3 max-w-3xl mx-auto">Blending data science depth with GenAI engineering — from modeling and inference to deploying resilient AI ecosystems.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-12">
   
         <!-- Python -->
         <div class="bg-gray-900 p-6 rounded-lg text-center hover:scale-105 transition-transform shadow-md">
@@ -428,7 +445,28 @@
           <h3 class="text-white font-semibold text-lg">Git & CI/CD</h3>
           <p class="text-indigo-400 mt-1">78%</p>
         </div>
-  
+      </div>
+      <div class="glass-card p-8">
+        <h3 class="text-xl font-semibold text-white mb-4 flex items-center gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+          Full-Stack AI Focus
+        </h3>
+        <div class="flex flex-wrap gap-3">
+          <span class="px-4 py-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-sm font-medium">Data Scientist</span>
+          <span class="pill">GenAI Solutions</span>
+          <span class="pill">Agentic AI Architectures</span>
+          <span class="pill">RAG</span>
+          <span class="pill">LangChain</span>
+          <span class="pill">LangGraph</span>
+          <span class="pill">LLM Ops</span>
+          <span class="pill">Vector Databases</span>
+          <span class="pill">Flask</span>
+          <span class="pill">Pinecone</span>
+          <span class="pill">Vector Embeddings</span>
+          <span class="pill">MongoDB</span>
+          <span class="pill">AI Agents</span>
+          <span class="pill">MLOps</span>
+        </div>
       </div>
     </div>
   </section>
@@ -495,27 +533,29 @@
             </a>
 
             <!-- Project 3 -->
-            <a href="https://github.com/Utkgitdev-07/Speech-Emotion-Recognition" target="_blank"
+            <a href="https://github.com/Utkgitdev-07/Medical-Chatbot-RAG" target="_blank"
                 class="block transform transition duration-300 hover:scale-205 group">
                 <div class="project-card bg-gray-800 h-full rounded-xl shadow-md overflow-hidden group-hover:shadow-2xl transition-all duration-300 ease-in-out transform group-hover:scale-105">
                     <div class="h-48 bg-indigo-100 flex items-center justify-center">
-                        <i class="fas fa-comment-dots text-6xl text-indigo-400"></i>
+                        <i class="fas fa-notes-medical text-6xl text-indigo-400"></i>
                     </div>
                     <div class="p-6">
                         <div class="flex items-center mb-2">
                             <div class="bg-indigo-100 text-indigo-400 p-2 rounded-full mr-3">
-                                <i class="fas fa-microphone-alt"></i>
+                                <i class="fas fa-stethoscope"></i>
                             </div>
-                            <h3 class="text-xl font-semibold text-white">Speech Emotion Recognition</h3>
+                            <h3 class="text-xl font-semibold text-white">Medical Chatbot RAG</h3>
                         </div>
                         <p class="text-gray-400 mb-4">
-                            Built a model that classifies human emotions based on speech patterns using MFCC features and deep learning. Enables emotion-aware systems.
+                            Developed an intelligent medical chatbot using RAG and Generative AI for contextual guidance. Powered by LangChain, Pinecone, and OpenAI LLMs with a Flask, Docker, and AWS CI/CD deployment stack.
                         </p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">Python</span>
-                            <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">Librosa</span>
-                            <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">TensorFlow</span>
+                            <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">LangChain</span>
+                            <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">Pinecone</span>
+                            <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">OpenAI</span>
                             <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">Flask</span>
+                            <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">Docker</span>
+                            <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">AWS</span>
                         </div>
                     </div>
                 </div>
